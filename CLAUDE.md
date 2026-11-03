@@ -102,7 +102,9 @@ The rebuild from a clean checkout was verified byte-identical to the last delive
    language switch the engine renames players whose name is still a default in any language, via the per-game
    `window.__fsPlayers` hook in `build.py` (`PLAYER_HOOK`). Custom names are never touched.
 4. Remaining `confirm()`/`alert()` dialogs: Dan is fine with them as they are. No change planned.
-5. French names for Smoky Mountains and for the Woodland Edge/Exploration expansions are not official.
+5. French names for Smoky Mountains and for the Woodland Edge/Exploration expansions are not official. Settled:
+   Dan found no French rules online, so the common species names stay (the footer says so). Revisit only if
+   an official French appendix appears.
 6. Base-game promo cards have not been fully audited.
 
 ## Working agreement
