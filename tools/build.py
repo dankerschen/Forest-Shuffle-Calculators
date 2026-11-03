@@ -36,6 +36,13 @@ new MutationObserver(post).observe(R,{attributes:true,attributeFilter:['data-the
 def switch(g):
     items=[('forest','Forest',''),('moor','Dartmoor',''),('smoky','Smoky',' Mountains')]
     return '<nav class="game-switch" aria-label="Choose game">'+''.join('<button type="button" data-g="%s"%s>%s%s</button>'%(k,' aria-current="page"' if k==g else '',n,('<span class="long">%s</span>'%x) if x else '') for k,n,x in items)+'</nav>'
+# Default player names ("Player 2") follow the page language; the i18n engine renames them on a language switch.
+DEFNAME_JS="<script>function fsDefName(n){return window.__fsDefName?window.__fsDefName(n):'Player '+n}</script>"
+PLAYER_HOOK={
+ 'forest':"{list:function(){return state.players},commit:function(){save();render()}}",
+ 'smoky':"{list:function(){return state.players},commit:function(){render();var i=document.getElementById('player-name');if(i)i.value=state.players[state.active].name}}",
+ 'moor':"{list:function(){return typeof forestSession!=='undefined'&&forestSession?forestSession.players:[]},commit:function(){setTimeout(function(){var i=document.getElementById('player-name');if(i)i.value=activePlayer().name;renderPlayers();persistSession()},0)}}",  # deferred: let Moor's own language handler run first
+}
 def addswitch(t,g):
     assert t.count('<header class="hero">')==1,g
     vc=_re.search(r'<div class="view-controls">(.*?)</div>',t,_re.S);assert vc,g
@@ -58,7 +65,10 @@ var w=document.createElement('div');w.className='sticky-tools';
 function sync(){b.setAttribute('aria-pressed',s.getAttribute('aria-pressed')==='true'?'true':'false')}
 b.addEventListener('click',function(){s.click()});sync();new MutationObserver(sync).observe(s,{attributes:true,attributeFilter:['aria-pressed']});w.appendChild(b)});
 pb.appendChild(w)})()</script>"""
+    js+='<script>window.__fsPlayers='+PLAYER_HOOK[g]+'</script>'
     js+=i18n_script(g)
+    assert t.count('</head>')==1,g
+    t=t.replace('</head>',DEFNAME_JS+'</head>',1)
     return t.replace('</body>',js+'</body>',1)
 f=addswitch(f,'forest');m=addswitch(m,'moor');s=addswitch(s,'smoky')
 shell=open(HERE+'shell_template.html',encoding='utf-8').read()

@@ -44,6 +44,7 @@ python3 tools/tests/test4.py      # nav links scroll to their section and the hi
 python3 tools/tests/test5.py      # functional checks per game, plus FR/DE nav
 python3 tools/tests/test6.py      # sticky home icon: scrolls to the top, exists in all games, phone and desktop
 python3 tools/tests/t_lang.py     # language sync across the three games in the combined page
+python3 tools/tests/t_names.py    # default player names follow the language (tab, name input, stored session)
 python3 tools/tests/i18n_check.py forest|moor|smoky   # lists strings left untranslated in FR/DE
 ```
 Run `shots.py` first: the other tests open the extracted `tools/.work/<game>.html` files.
@@ -97,7 +98,9 @@ The rebuild from a clean checkout was verified byte-identical to the last delive
 2. **Nine Smoky Mountains cards use manual points**: Yellow Birch, White-Footed Mouse, White-Tailed Deer,
    Wintergreen, Wood Frog, Wood Thrush, Yellow-Bellied Sapsucker, Yellow Bullhead, Yellow Perch. The full English appendix
    (linked in the Smoky footer) can resolve them.
-3. Default player names ("Player 1") are translated on the tab, but the input value stays English.
+3. ~~Default player names stay English in the input.~~ Done: `fsDefName(n)` creates "Player/Joueur/Person n"; on a
+   language switch the engine renames players whose name is still a default in any language, via the per-game
+   `window.__fsPlayers` hook in `build.py` (`PLAYER_HOOK`). Custom names are never touched.
 4. Remaining `confirm()`/`alert()` dialogs could become in-page dialogs.
 5. French names for Smoky Mountains and for the Woodland Edge/Exploration expansions are not official.
 6. Base-game promo cards have not been fully audited.

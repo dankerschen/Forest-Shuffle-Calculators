@@ -77,6 +77,11 @@ function start(){mo.observe(document.documentElement,{childList:true,subtree:tru
 function dlg(m){if(L==='en'||typeof m!=='string')return m;return m.split('\n').map(function(l){var k=norm(l),r=T(k)||dlgRe(k);return r!=null?r:l}).join('\n')}
 function dlgRe(k){var d=D.dlg;for(var i=0;i<d.length;i++){var m=new RegExp(d[i][0]).exec(k);if(m){var s=d[i][1][IDX[L]];return s.replace(/\$(\d)/g,function(_,x){return m[+x]})}}return null}
 ['alert','confirm','prompt'].forEach(function(f){var o=window[f];window[f]=function(a,b){return o.call(window,dlg(a),b)}});
+var DEFW={en:'Player ',fr:'Joueur ',de:'Person '},DEFRE=/^(?:Player|Joueur|Person) (\d+)$/;
+function defName(n){return (DEFW[L]||DEFW.en)+n}
+function renameDefaults(){var h=window.__fsPlayers;if(!h)return;try{var ps=h.list()||[],ch=false;
+ for(var i=0;i<ps.length;i++){var m=DEFRE.exec(ps[i].name||'');if(m){var nn=defName(m[1]);if(nn!==ps[i].name){ps[i].name=nn;ch=true}}}
+ if(ch)h.commit()}catch(e){}}
 function setLang(l,user){
  if(!(l in IDX))return;var ch=l!==L;L=l;
  document.documentElement.lang=l;
@@ -85,6 +90,7 @@ function setLang(l,user){
  if(sel&&sel.value!==l){sel.value=l;if(MOOR&&document.readyState!=='loading')sel.dispatchEvent(new Event('change',{bubbles:true}))}
  try{localStorage.setItem('fs-lang',l)}catch(e){}
  var nt=document.getElementById('lang-note');if(nt)nt.textContent=l.toUpperCase();
+ if(ch)renameDefaults();
  if(ch||user){mo.disconnect();walk(document.body,true);var ti=D.title;if(ti){document.title=(l==='en')?ti.en:ti[l]}start()}
  if(user){try{parent.postMessage({fsLang:l},'*')}catch(e){}}
 }
@@ -93,7 +99,7 @@ var sel=document.getElementById('language-select');
 if(sel)sel.addEventListener('change',function(){if(sel.value!==L)setLang(sel.value,true)});
 var init='en';try{init=localStorage.getItem('fs-lang')||''}catch(e){}
 if(!(init in IDX)){var nl=(navigator.language||'en').slice(0,2).toLowerCase();init=nl in IDX?nl:'en'}
-window.__fsT=function(s){return dlg(s)};window.__fsLang=function(){return L};
+window.__fsT=function(s){return dlg(s)};window.__fsDefName=defName;window.__fsLang=function(){return L};
 start();setLang(init,false);
 if(MOOR&&document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){var l=L;L='';setLang(l,false)});
 if(init==='en'&&sel)sel.value='en';

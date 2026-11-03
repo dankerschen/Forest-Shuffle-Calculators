@@ -40,7 +40,7 @@ def build_forest(f):
         '<label class="option-label solo-option"><input id="solo" type="checkbox"/>Exploration solo thresholds</label>'
         '<p class="hint">'+m.group(1)+'</p>'),'players')
     f=once(f,"document.getElementById('add-player').onclick=()=>{const name=prompt('Player name');if(name?.trim()){state.players.push(player(name.trim().slice(0,100)));state.active=state.players.length-1;update();}};",
-      "document.getElementById('add-player').onclick=()=>{state.players.push(player('Player '+(state.players.length+1)));state.active=state.players.length-1;update();const pm=document.getElementById('player-management'),pn=document.getElementById('player-name');pm.scrollIntoView({behavior:'smooth'});pn.focus({preventScroll:true});pn.select();};",'addplayer')
+      "document.getElementById('add-player').onclick=()=>{state.players.push(player(fsDefName(state.players.length+1)));state.active=state.players.length-1;update();const pm=document.getElementById('player-management'),pn=document.getElementById('player-name');pm.scrollIntoView({behavior:'smooth'});pn.focus({preventScroll:true});pn.select();};",'addplayer')
     # ---- nav
     f=sub1(f,r'<nav aria-label="Scoring categories" class="category-nav">.*?</nav>',
         nav_html([('section-trees','Trees','trees'),('section-tops','Tops','tops'),('section-bottoms','Bottoms','bottoms'),('section-sides','Sides','sides'),('section-cave','Cave','cave'),('section-summary','Summary','summary'),('section-bgstats','All scores / BG Stats','allscores')]),'f nav')
@@ -69,4 +69,5 @@ r"""document.getElementById('summary').innerHTML=state.players.map((q,i)=>`<tr c
     f=once(f,"startPlayer:i===0","startPlayer:document.getElementById('bg-start').value===String(i)",'f start')
     # (3) clicking a name in the results table also scrolls to the settings
     f=once(f,"document.getElementById('send').onclick=","document.getElementById('summary').addEventListener('click',e=>{if(e.target.closest('[data-goto]')){const pm=document.getElementById('player-management');if(pm)setTimeout(()=>pm.scrollIntoView({behavior:'smooth'}),50)}});document.getElementById('send').onclick=",'f goto')
+    f=once(f,"players:[player('Player 1')]","players:[player(fsDefName(1))]",'f fresh name')
     return f

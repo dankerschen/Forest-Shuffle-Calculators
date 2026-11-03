@@ -53,7 +53,8 @@ def build_smoky(s, forest_style_src, moor_src):
     scripts=[m for m in re.finditer(r'<script[^>]*>(.*?)</script>',s,re.S)]
     js=scripts[0].group(1);extra_js=scripts[-1].group(0)   # [0]=app logic, last=build2 helper (rules/theme/norm)
     js=once(js,"document.getElementById('addPlayer').onclick=()=>{if(state.players.length>=5)return alert('Maximum 5 players.');const name=prompt('Player name',`Player ${state.players.length+1}`);if(name!==null){state.players.push(fresh(name.trim()||'Player'));state.active=state.players.length-1;render();}};",
-      "document.getElementById('addPlayer').onclick=()=>{if(state.players.length>=5)return;state.players.push(fresh('Player '+(state.players.length+1)));state.active=state.players.length-1;render();const pm=document.getElementById('player-management'),pn=document.getElementById('player-name');if(pm)pm.scrollIntoView({behavior:'smooth'});if(pn){pn.focus({preventScroll:true});pn.select();}};",'s addplayer')
+      "document.getElementById('addPlayer').onclick=()=>{if(state.players.length>=5)return;state.players.push(fresh(fsDefName(state.players.length+1)));state.active=state.players.length-1;render();const pm=document.getElementById('player-management'),pn=document.getElementById('player-name');if(pm)pm.scrollIntoView({behavior:'smooth'});if(pn){pn.focus({preventScroll:true});pn.select();}};",'s addplayer')
+    js=once(js,"function fresh(name='Player 1'){","function fresh(name=fsDefName(1)){",'s fresh name')
     js=once(js,"warnings').textContent=warnings.join(' ')","warnings').textContent=warnings.join(' · ')",'warnjoin')
     js=once(js,"const GROUPS=['Trees','Rivers','Top','Sides','Bottom','Squirrels'];","const GROUPS=['Trees','Rivers','Top','Bottom','Sides','Squirrels'];",'s groups')
     # render(): drop select + old total; swap the whole main/summary block

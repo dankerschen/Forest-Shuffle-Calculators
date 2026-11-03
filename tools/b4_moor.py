@@ -24,4 +24,6 @@ def build_moor(m):
     for a,b in [('"Tops": "Haut"','"Tops": "En haut"'),('"Bottoms": "Bas"','"Bottoms": "En bas"'),('"Sides": "Gauche / droite"','"Sides": "Côtés"'),
                 ('"Tops points": "Haut — points"','"Tops points": "En haut — points"'),('"Bottoms points": "Bas — points"','"Bottoms points": "En bas — points"'),('"Sides points": "Gauche / droite — points"','"Sides points": "Côtés — points"')]:
         m=once(m,a,b,'m fr '+a)
+    m=once(m,"name:'Player '+(forestSession.players.length+1)","name:fsDefName(forestSession.players.length+1)",'m addplayer name')
+    m=once(m,"players:[{id,name:'Player 1',state:emptyForest()}]","players:[{id,name:fsDefName(1),state:emptyForest()}]",'m fresh name')
     return m
