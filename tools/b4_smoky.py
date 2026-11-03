@@ -73,7 +73,7 @@ def build_smoky(s, forest_style_src, moor_src):
     # --- page parts to keep
     audit=re.search(r'<details><summary>Scoring audit and limitations</summary>.*?</details>',s,re.S).group(0)
     foot=re.search(r'<footer>(.*?)</footer>',s,re.S).group(1)
-    notice='English scoring preview · Tap a card name to add a copy; use − to remove. Amber-marked entries require manual points until their formulas are verified. This version does not validate legal forest placement.'
+    notice='English scoring preview · Tap a card name to add a copy; use − to remove. This version does not validate legal forest placement.'
     # --- style: Forest's stylesheet (so everything is laid out identically) with Smoky's own hero image
     st=re.search(r'<style>(.*?)</style>',forest_style_src,re.S).group(1)
     smoky_img=re.search(r':root\{--hero-img:url\([^)]*\)\}',s).group(0)

@@ -45,6 +45,7 @@ python3 tools/tests/test5.py      # functional checks per game, plus FR/DE nav
 python3 tools/tests/test6.py      # sticky home icon: scrolls to the top, exists in all games, phone and desktop
 python3 tools/tests/t_lang.py     # language sync across the three games in the combined page
 python3 tools/tests/t_names.py    # default player names follow the language (tab, name input, stored session)
+python3 tools/tests/t_smoky9.py   # the nine late Smoky cards against the German appendix examples
 python3 tools/tests/i18n_check.py forest|moor|smoky   # lists strings left untranslated in FR/DE
 ```
 Run `shots.py` first: the other tests open the extracted `tools/.work/<game>.html` files.
@@ -93,15 +94,14 @@ The rebuild from a clean checkout was verified byte-identical to the last delive
 
 ## Open items (none blocking)
 
-1. **Real-device testing**: everything was tested in desktop Chromium only. Check on Safari and on Dan's iPad,
-   especially section links in the sticky row and the new home icon.
-2. **Nine Smoky Mountains cards use manual points**: Yellow Birch, White-Footed Mouse, White-Tailed Deer,
-   Wintergreen, Wood Frog, Wood Thrush, Yellow-Bellied Sapsucker, Yellow Bullhead, Yellow Perch. The full English appendix
-   (linked in the Smoky footer) can resolve them.
+1. ~~Real-device testing~~ Done: Dan tested on his phone, all good (Nov 2026). Dan keeps the home icon.
+2. ~~Nine Smoky cards with manual points~~ Done from Lookout's German appendix (15.06.2026): Yellow Birch 1 each,
+   Sapsucker and Yellow Perch 2 each, Wood Thrush and Yellow Bullhead 0, Wood Frog 1 per tree, White-Tailed Deer
+   2 per tree, White-Footed Mouse 1 per mouse (itself included), Wintergreen 3 per squirrel. No card is manual now.
 3. ~~Default player names stay English in the input.~~ Done: `fsDefName(n)` creates "Player/Joueur/Person n"; on a
    language switch the engine renames players whose name is still a default in any language, via the per-game
    `window.__fsPlayers` hook in `build.py` (`PLAYER_HOOK`). Custom names are never touched.
-4. Remaining `confirm()`/`alert()` dialogs could become in-page dialogs.
+4. Remaining `confirm()`/`alert()` dialogs: Dan is fine with them as they are. No change planned.
 5. French names for Smoky Mountains and for the Woodland Edge/Exploration expansions are not official.
 6. Base-game promo cards have not been fully audited.
 
