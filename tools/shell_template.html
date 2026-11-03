@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark"><title>Forest Shuffle scoring</title>
+<style>
+:root{--bar:#fbf8ef;--ink:#374236;--line:#d6d0bb;--soft:#e6ead7;--accent:#566b48}
+:root[data-theme=dark]{--bar:#1d261f;--ink:#e8eadb;--line:#3d4a3f;--soft:#2c3a2f;--accent:#b5d29c}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{display:flex;flex-direction:column;background:var(--bar);font:16px system-ui,-apple-system,Segoe UI,sans-serif}
+iframe{flex:1;width:100%;border:0;min-height:0}iframe[hidden]{display:none}
+</style></head><body>
+<iframe id="f-forest" title="Forest Shuffle base game" hidden></iframe><iframe id="f-moor" title="Forest Shuffle Dartmoor" hidden></iframe><iframe id="f-smoky" title="Forest Shuffle Smoky Mountains" hidden></iframe>
+<script>
+const KEY='fs-last-game',root=document.documentElement,G=['forest','moor','smoky'];
+function show(g){G.forEach(k=>document.getElementById('f-'+k).hidden=k!==g);
+ try{localStorage.setItem(KEY,g)}catch(e){}try{history.replaceState(null,'','#'+g)}catch(e){}}
+addEventListener('message',function(e){const d=e.data;if(!d||G.indexOf(d.fsGame)<0)return;
+ if(!G.some(k=>document.getElementById('f-'+k).contentWindow===e.source))return;show(d.fsGame)});
+addEventListener('hashchange',function(){const h=location.hash.slice(1);if(G.includes(h))show(h)});
+let start='forest';try{start=localStorage.getItem(KEY)||start}catch(e){}
+const h=location.hash.slice(1);if(G.includes(h))start=h;show(start);
+const dark=matchMedia('(prefers-color-scheme: dark)');
+let theme=null;try{theme=localStorage.getItem('fs-theme')}catch(e){}
+if(theme!=='dark'&&theme!=='light')theme=dark.matches?'dark':'light';
+function setTheme(t,from){theme=t;root.dataset.theme=t;try{localStorage.setItem('fs-theme',t)}catch(e){}
+ for(const k of G){const w=document.getElementById('f-'+k).contentWindow;if(w&&w!==from)try{w.postMessage({fsTheme:t},'*')}catch(e){}}}
+addEventListener('message',function(e){const d=e.data;if(!d||(d.fsTheme!=='dark'&&d.fsTheme!=='light'))return;
+ if(!G.some(k=>document.getElementById('f-'+k).contentWindow===e.source))return;if(d.fsTheme!==theme)setTheme(d.fsTheme,e.source)});
+for(const k of G){const f=document.getElementById('f-'+k);f.addEventListener('load',function(){try{f.contentWindow.postMessage({fsTheme:theme},'*')}catch(e){}})}
+root.dataset.theme=theme;
+let lang=null;try{lang=localStorage.getItem('fs-lang')}catch(e){}
+if(!['en','fr','de'].includes(lang)){const n=(navigator.language||'en').slice(0,2).toLowerCase();lang=['fr','de'].includes(n)?n:'en'}
+root.lang=lang;
+function setLang(l,from){lang=l;root.lang=l;try{localStorage.setItem('fs-lang',l)}catch(e){}
+ for(const k of G){const w=document.getElementById('f-'+k).contentWindow;if(w&&w!==from)try{w.postMessage({fsLang:l},'*')}catch(e){}}}
+addEventListener('message',function(e){const d=e.data;if(!d||['en','fr','de'].indexOf(d.fsLang)<0)return;
+ if(!G.some(k=>document.getElementById('f-'+k).contentWindow===e.source))return;if(d.fsLang!==lang)setLang(d.fsLang,e.source)});
+for(const k of G){const f=document.getElementById('f-'+k);f.addEventListener('load',function(){try{f.contentWindow.postMessage({fsLang:lang},'*')}catch(e){}})}
+</script></body></html>

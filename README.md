@@ -75,3 +75,11 @@ Official documents (PDF, Lookout): see the footer of each game in the page, or
 MIT for the original parts, see [LICENSE](LICENSE). Third-party code, translation
 sources and the AI-image terms are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 Game names, rules and artwork remain the property of Lookout GmbH.
+
+## Development
+
+`index.html` is generated. Sources and the build live in `tools/`; see [CLAUDE.md](CLAUDE.md).
+
+```
+python3 tools/build.py        # rebuilds index.html
+```
