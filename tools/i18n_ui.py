@@ -159,7 +159,7 @@ add('Highest score wins. Tied highest scores are joint winners; adjust a tie-bre
 
 # --- expansions / boxes ---------------------------------------------------------------
 BOX = {'Base': ('Base', 'Grundspiel'), 'Alpine': ('Alpin', 'Alpin'), 'Woodland Edge': ('Lisière', 'Waldrand'),
-       'Exploration': ('Exploration', 'Exploration'), 'Smoky Mountains': ('Smoky Mountains', 'Smoky Mountains')}
+       'Exploration': ('Exploration', 'Exploration'), 'Smoky Mountains': ('Smoky Mountains', 'Smoky Mountains'), 'Promos': ('Promos', 'Promos')}
 
 # --- plural helper words used by templates ------------------------------------------------
 KIND = {  # "N × <kind> cards per copy"
@@ -168,7 +168,8 @@ KIND = {  # "N × <kind> cards per copy"
  'deer': ('cartes Cervidé', 'Hirschkarten'), 'bird': ('cartes Oiseau', 'Vogelkarten'),
  'insect': ('cartes Insecte', 'Insektenkarten'), 'amphibian': ('cartes Amphibien', 'Amphibienkarten'),
  'bat': ('cartes Chauve-souris', 'Fledermauskarten'), 'butterfly': ('cartes Papillon', 'Schmetterlingskarten'),
- 'hare': ('cartes Lièvre', 'Hasenkarten'), 'alpine': ('cartes Alpin', 'Alpin-Karten'), 'edge': ('cartes Lisière', 'Waldrand-Karten')}
+ 'hare': ('cartes Lièvre', 'Hasenkarten'), 'alpine': ('cartes Alpin', 'Alpin-Karten'), 'edge': ('cartes Lisière', 'Waldrand-Karten'),
+ 'boot': ('cartes Botte', 'Stiefelkarten'), 'mushroom': ('cartes Champignon', 'Pilzkarten'), 'shrub': ('cartes Arbuste', 'Strauchkarten')}
 
 # official French section headings (Forêt Mixte rulebook: "Arbres + En haut + En bas + Côtés + Grotte")
 for _en,_fr in [('Tops','En haut'),('Bottoms','En bas'),('Sides','Côtés'),('Top','En haut'),('Bottom','En bas'),('Tops points','En haut — points'),('Bottoms points','En bas — points'),('Sides points','Côtés — points')]:

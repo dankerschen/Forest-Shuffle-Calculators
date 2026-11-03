@@ -10,7 +10,7 @@ function ex(s){var v=D.x[s];return v?v[IDX[L]]:null}
 function t(s){var r=T(s);return r==null?s:r}
 function pl(n,one,many){return +n===1?one:many}
 var R=[
- [/^(Base|Alpine|Woodland Edge|Exploration|Smoky Mountains) · (.+)$/,function(m){return t(m[1])+' · '+t(m[2])}],
+ [/^(Base|Alpine|Woodland Edge|Exploration|Promos|Smoky Mountains) · (.+)$/,function(m){return t(m[1])+' · '+t(m[2])}],
  [/^(\d+) points per copy$/,function(m){return L==='fr'?m[1]+' '+pl(m[1],'point','points')+' par exemplaire':m[1]+' '+pl(m[1],'Punkt','Punkte')+' pro Karte'}],
  [/^(\d+) points per qualifying copy$/,function(m){return L==='fr'?m[1]+' '+pl(m[1],'point','points')+' par exemplaire éligible':m[1]+' '+pl(m[1],'Punkt','Punkte')+' pro qualifizierter Karte'}],
  [/^(\d+) × (\w+) cards per copy$/,function(m){var k=D.kind[m[2]];if(!k)return null;return m[1]+' × '+k[IDX[L]]+(L==='fr'?' par exemplaire':' pro Karte')}],

@@ -7,7 +7,7 @@ def credits(game, keep_details=''):
     specific={
      'forest':('<p><strong>This calculator.</strong> Design idea: Dan Kerschen. Scoring logic informed by the Lookout rules and by '
                '<a href="https://github.com/soldag/forest-shuffle-scoring" rel="noopener">Sören Oldag’s Forest Shuffle scoring project</a>, an independent quantity-based implementation. '
-               'Full promo audit and browser/device testing remain outstanding.</p>',
+               'Promo cards (box “Promos”) come from card photos and a fan-compiled list; check them against your printed cards.</p>',
                '<p><strong>Licence.</strong> Code and scoring logic derived from Sören Oldag’s project are used under the MIT licence, © 2023 Sören Oldag. Interface parts shared with the Dartmoor tool (results layout, icon set) derive from Mikko Saari’s MIT-licensed code, © 2025 msaari. Both notices are reproduced below. Game name, rules and artwork remain © Lookout GmbH.</p>'),
      'moor':('<p><strong>This calculator.</strong> Design idea: Dan Kerschen. Calculator developed by Mikko Saari, expanded for Exmoor by nils-codes (version 1.28, 13.10.2026; <a href="https://codeberg.org/msaari/forestshuffle-dartmoor" rel="noopener">source on Codeberg</a>); inspiration drawn from '
              '<a href="https://forestshuffle.app/" rel="noopener">ForestShuffle.app</a>.</p>',

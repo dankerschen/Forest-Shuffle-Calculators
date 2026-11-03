@@ -26,6 +26,7 @@ tools/
   base_forest.html  base_moor.html  base_smoky.html   the three upstream-derived calculators (inputs)
   b4_common.py             shared CSS (CSS, LAYOUT_CSS, TOOLS_CSS) and shared JS (scroll-spy, click handler, home link)
   b4_forest.py b4_moor.py b4_smoky.py   per-game patches: hero, groups, nav, save notes, etc.
+  b4_promos.py             Forest promo cards (box "Promos", hidden by default): data, rules, hints
   b4_credits.py            footer credits and the Lookout PDF links (DOCS dict)
   i18n_build.py            merges the dictionaries and embeds i18n_engine.js per game
   i18n_engine.js           runtime translator (DOM text, attributes, regex rules, dialogs)
@@ -46,6 +47,7 @@ python3 tools/tests/test6.py      # sticky home icon: scrolls to the top, exists
 python3 tools/tests/t_lang.py     # language sync across the three games in the combined page
 python3 tools/tests/t_names.py    # default player names follow the language (tab, name input, stored session)
 python3 tools/tests/t_smoky9.py   # the nine late Smoky cards against the German appendix examples
+python3 tools/tests/t_promos.py   # Forest promo cards: scoring, box toggle, German names
 python3 tools/tests/i18n_check.py forest|moor|smoky   # lists strings left untranslated in FR/DE
 ```
 Run `shots.py` first: the other tests open the extracted `tools/.work/<game>.html` files.
@@ -105,7 +107,13 @@ The rebuild from a clean checkout was verified byte-identical to the last delive
 5. French names for Smoky Mountains and for the Woodland Edge/Exploration expansions are not official. Settled:
    Dan found no French rules online, so the common species names stay (the footer says so). Revisit only if
    an official French appendix appears.
-6. Base-game promo cards have not been fully audited.
+6. Forest promos: 25 card halves added in `tools/b4_promos.py` (box "Promos", off by default). Rules come from Dan's
+   card photos (P017, P018, P020, P023, P025, P026, P027, P030, PX25) and from Dan's fan-compiled handover (P003 bat,
+   P005 Chinese Hare, P013 Meeps, P021 Black Stork, P022, P024, P029), marked per card. Promos already in Exploration
+   are not repeated. Not added (rules missing or conflicting): P002 4th Fire Salamander, P003 hare, P005a, P006 Water
+   Vole promo, P009 badger, P019, P021 Iberian Lynx. Open questions: the boot symbol has no official name yet; does
+   Memorial Linden count as a Linden for the Linden majority (currently no)? Robber has no symbols set.
+   Dartmoor DP04 (Lambs 1, Willow Ptarmigan 3) and Smoky SP06-SP08 are not added: Smoky ones have no scoring known.
 
 ## Working agreement
 

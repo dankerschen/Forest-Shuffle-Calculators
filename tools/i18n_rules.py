@@ -28,6 +28,14 @@ BODIES = {
  '2 × Beech and Oak symbols per copy': ('2 × icônes Hêtre et Chêne par exemplaire', '2 × Symbole Buche und Eiche pro Karte'),
  '2 × (saplings + Birch and Douglas Fir symbols)': ('2 × (jeunes pousses + icônes Bouleau et Sapin Douglas)', '2 × (Setzlinge + Symbole Birke und Douglasie)'),
  'Pawed animals + amphibians per copy': ('Plantigrades/digitigrades + amphibiens par exemplaire', 'Pfotentiere + Amphibien pro Karte'),
+ 'Plants + shrubs per copy': ('Plantes + arbustes par exemplaire', 'Pflanzen + Sträucher pro Karte'),
+ '2 × (pawed animals + boot cards) per copy': ('2 × (plantigrades/digitigrades + cartes Botte) par exemplaire', '2 × (Pfotentiere + Stiefelkarten) pro Karte'),
+ '10 each if at least one Great Spotted Woodpecker': ('10 chacun avec au moins un Pic épeiche', 'je 10 mit mindestens einem Buntspecht'),
+ 'Pawed, amphibian, bird, hoofed and boot cards per copy': ('Cartes plantigrade/digitigrade, amphibien, oiseau, ongulé et botte par exemplaire', 'Pfotentier-, Amphibien-, Vogel-, Huftier- und Stiefelkarten pro Karte'),
+ '7 each with at most 6 trees': ('7 chacun avec au plus 6 arbres', 'je 7 bei höchstens 6 Bäumen'),
+ '5 each, or 15 with at least 3 different plants': ('5 chacun, ou 15 avec au moins 3 plantes différentes', 'je 5, oder 15 bei mindestens 3 verschiedenen Pflanzen'),
+ 'Its tree has no pawed or cloven-hoofed animal': ('Son arbre n’a ni plantigrade/digitigrade ni ongulé', 'Sein Baum hat kein Pfoten- oder Huftier'),
+ 'A plant is on its tree or shrub': ('Une plante se trouve sur son arbre ou arbuste', 'An seinem Baum oder Strauch liegt eine Pflanze'),
  'Insects + amphibians per copy': ('Insectes + amphibiens par exemplaire', 'Insekten + Amphibien pro Karte'),
  'No points; choose the host for each bee': ('Aucun point ; choisissez l’hôte de chaque abeille', 'Keine Punkte; wähle den Wirt für jede Biene'),
  # ---- Smoky Mountains ----------------------------------------------------------------
@@ -139,9 +147,9 @@ FOOTER = {
  'Design idea: Dan Kerschen. Scoring logic informed by the Lookout rules and by':
    ('Idée de conception : Dan Kerschen. Logique de score inspirée des règles de Lookout et du', 'Designidee: Dan Kerschen. Wertungslogik nach den Lookout-Regeln und nach dem'),
  'Sören Oldag’s Forest Shuffle scoring project': ('projet de calcul des scores Forest Shuffle de Sören Oldag', 'Forest-Shuffle-Wertungsprojekt von Sören Oldag'),
- ', an independent quantity-based implementation. Full promo audit and browser/device testing remain outstanding.':
-   (', une implémentation indépendante fondée sur les quantités. L’audit complet des promos et les tests sur navigateurs et appareils restent à faire.',
-    ', einer unabhängigen mengenbasierten Umsetzung. Die vollständige Promo-Prüfung und Tests mit verschiedenen Browsern und Geräten stehen noch aus.'),
+ ', an independent quantity-based implementation. Promo cards (box “Promos”) come from card photos and a fan-compiled list; check them against your printed cards.':
+   (', une implémentation indépendante fondée sur les quantités. Les cartes promo (boîte « Promos ») proviennent de photos de cartes et d’une liste établie par des fans ; vérifiez-les avec vos cartes imprimées.',
+    ', einer unabhängigen mengenbasierten Umsetzung. Die Promokarten (Box „Promos“) stammen aus Kartenfotos und einer Fan-Liste; prüfe sie anhand deiner gedruckten Karten.'),
  'Design idea: Dan Kerschen. Calculator developed by Mikko Saari, expanded for Exmoor by nils-codes (version 1.28, 13.10.2026;':
    ('Idée de conception : Dan Kerschen. Calculateur développé par Mikko Saari, étendu à Exmoor par nils-codes (version 1.28, 13.10.2026 ;',
     'Designidee: Dan Kerschen. Rechner entwickelt von Mikko Saari, für Exmoor erweitert von nils-codes (Version 1.28, 13.10.2026;'),

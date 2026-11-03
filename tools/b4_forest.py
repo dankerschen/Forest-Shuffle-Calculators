@@ -1,5 +1,6 @@
 import os;HERE=os.path.dirname(os.path.abspath(__file__))+'/'
 exec(open(HERE+'b4_common.py',encoding='utf-8').read())
+exec(open(HERE+'b4_promos.py',encoding='utf-8').read())
 
 SESSION='''<details class="session-tools hero-session-tools" id="hero-session-tools"><summary>Session tools &amp; backup</summary><div class="export-actions"><button class="switch" id="backup" type="button">Back up session</button><button class="switch" id="restore-btn" onclick="document.getElementById('restore').click()" type="button">Restore backup</button><button class="switch danger" id="new-game" type="button">New game</button><input accept=".json,application/json" hidden id="restore" type="file"/></div><small id="status" role="status"></small></details>'''
 
@@ -70,4 +71,5 @@ r"""document.getElementById('summary').innerHTML=state.players.map((q,i)=>`<tr c
     # (3) clicking a name in the results table also scrolls to the settings
     f=once(f,"document.getElementById('send').onclick=","document.getElementById('summary').addEventListener('click',e=>{if(e.target.closest('[data-goto]')){const pm=document.getElementById('player-management');if(pm)setTimeout(()=>pm.scrollIntoView({behavior:'smooth'}),50)}});document.getElementById('send').onclick=",'f goto')
     f=once(f,"players:[player('Player 1')]","players:[player(fsDefName(1))]",'f fresh name')
+    f=apply_promos(f)
     return f

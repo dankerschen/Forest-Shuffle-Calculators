@@ -52,6 +52,16 @@ FOREST = {
  'Roe Deer': ('Chevreuil', 'Reh'), 'Chamois': ('Chamois', 'Gämse'),
 }
 # official French names (Forêt Mixte score sheet for base game + Alpine, and the French rulebooks)
+FOREST.update({  # promo cards (FR/DE: common names, not official Lookout wording)
+ 'Memorial Linden (Památná lípa)': ('Tilleul commémoratif (Památná lípa)', 'Gedenklinde (Památná lípa)'),
+ 'Maple': ('Érable à sucre', 'Zucker-Ahorn'), 'Little Red Riding Hood': ('Le Petit Chaperon rouge', 'Rotkäppchen'),
+ 'Big Bad Wolf': ('Le Grand Méchant Loup', 'Großer, böser Wolf'), 'Roseate Spoonbill': ('Spatule rosée', 'Rosalöffler'),
+ 'American Alligator': ('Alligator d’Amérique', 'Mississippi-Alligator'), 'Australian Magpie': ('Cassican flûteur', 'Flötenvogel'),
+ 'Short-Beaked Echidna': ('Échidné à nez court', 'Kurzschnabeligel'), 'Hyacinth Macaw (Arara-Azul)': ('Ara hyacinthe (Arara-Azul)', 'Hyazinthara (Arara-Azul)'),
+ 'Guaraná': ('Guarana', 'Guaraná'), 'Dürer Bat': ('Chauve-souris de Dürer', 'Dürer-Fledermaus'), 'Chinese Hare': ('Lièvre de Chine', 'Chinesischer Hase'),
+ 'Black Stork': ('Cigogne noire', 'Schwarzstorch'), 'Sheep': ('Mouton', 'Schaf'), 'Robber': ('Brigand', 'Räuber'), 'Cicada': ('Cigale', 'Zikade'),
+ 'Red Wood Ant': ('Fourmi rousse', 'Rote Waldameise'), 'Blue Jay': ('Geai bleu', 'Blauhäher'), 'Beaver': ('Castor', 'Biber'),
+})
 _FR_OFF={'Douglas Fir':'Sapin Douglas','Horse Chestnut':'Marronnier commun','Sycamore':'Érable','Sapling':'Jeune pousse','Phoebus Apollo':'Petit apollon',
  'Chanterelle':'Girolle','Hedgehog':'Hérisson commun','Pond Turtle':'Cistude','Stag Beetle':'Lucane','Blackberries':'Mûre','Fireflies':'Luciole',
  'Tree Ferns':'Fougère arborescente','Wolf':'Loup','Lynx':'Lynx','Fallow Deer':'Daim'}
