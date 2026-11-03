@@ -48,6 +48,7 @@ python3 tools/tests/t_lang.py     # language sync across the three games in the 
 python3 tools/tests/t_names.py    # default player names follow the language (tab, name input, stored session)
 python3 tools/tests/t_smoky9.py   # the nine late Smoky cards against the German appendix examples
 python3 tools/tests/t_promos.py   # Forest promo cards: scoring, box toggle, German names
+python3 tools/tests/t_moor_dp04.py  # Dartmoor DP04 Lambs / Willow Ptarmigan
 python3 tools/tests/i18n_check.py forest|moor|smoky   # lists strings left untranslated in FR/DE
 ```
 Run `shots.py` first: the other tests open the extracted `tools/.work/<game>.html` files.
@@ -113,7 +114,8 @@ The rebuild from a clean checkout was verified byte-identical to the last delive
    are not repeated. Not added (rules missing or conflicting): P002 4th Fire Salamander, P003 hare, P005a, P006 Water
    Vole promo, P009 badger, P019, P021 Iberian Lynx. Open questions: the boot symbol has no official name yet; does
    Memorial Linden count as a Linden for the Linden majority (currently no)? Robber has no symbols set.
-   Dartmoor DP04 (Lambs 1, Willow Ptarmigan 3) and Smoky SP06-SP08 are not added: Smoky ones have no scoring known.
+   Dartmoor DP04 added (`add_dp04` in `b4_moor.py`): Lambs 1 point as `hoof-lambs` (counts as a hoof), Willow
+   Ptarmigan 3 points as `bird-side-willowptarmigan`; effects not scored. Smoky SP06-SP08 not added: no scoring known.
 
 ## Working agreement
 

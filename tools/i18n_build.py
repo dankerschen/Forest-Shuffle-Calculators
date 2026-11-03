@@ -45,7 +45,7 @@ EXTRA.update({
  'River Lyd':('Rivière Lyd','Fluss Lyd'),'Tarr Steps':('Tarr Steps','Tarr Steps'),
  'Hound of the Baskervilles':('Le Chien des Baskerville','Der Hund von Baskerville'),
  'Dartmoor-Rennpferd':('Cheval de course de Dartmoor','Dartmoor-Rennpferd'),
- 'Hairy Hands':('Mains velues','Haarige Hände'),'Wolpertinger':('Wolpertinger','Wolpertinger'),
+ 'Hairy Hands':('Mains velues','Haarige Hände'),'Lambs':('Agneaux','Lämmer'),'Willow Ptarmigan':('Lagopède des saules','Moorschneehuhn'),'Wolpertinger':('Wolpertinger','Wolpertinger'),
  'Red Ruby Devons':('Vache Devon rouge','Red-Ruby-Devon-Rinder'),'Otter':('Loutre d’Europe','Fischotter'),'Ring Cairn':('Cercle de pierre','Ringcairn'),
  'Check every per-copy condition/count before finalizing':('Vérifiez chaque condition ou comptage par exemplaire avant de finaliser','Prüfe vor dem Abschluss jede Bedingung bzw. Zählung pro Karte'),
 })
