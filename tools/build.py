@@ -119,6 +119,11 @@ if "const dark=matchMedia('(prefers-color-scheme: dark)');" in shell:
     a_=shell.index("const dark=matchMedia('(prefers-color-scheme: dark)');");b_=shell.index('</script></body></html>')
     shell=shell[:a_]+NEWTHEME+shell[b_:]
 
+# splash tiles: small copies of the hero art (tools/art/splash_*.webp), embedded so the page stays self-contained
+import base64 as _b64
+for _g in ['forest','moor','smoky']:
+    _ph='__SPLASH_%s__'%_g;assert shell.count(_ph)==1,_ph
+    shell=shell.replace(_ph,'data:image/webp;base64,'+_b64.b64encode(open(HERE+'art/splash_%s.webp'%_g,'rb').read()).decode())
 frames=''.join(f'<iframe id="f-{k}" title="{t}" srcdoc="{html.escape(v,quote=True)}" hidden></iframe>' for k,v,t in
  [('forest',f,'Forest Shuffle base game'),('moor',m,'Forest Shuffle Dartmoor'),('smoky',s,'Forest Shuffle Smoky Mountains')])
 a=shell.index('<iframe id="f-forest"');b=shell.rindex('</iframe>')+9

@@ -11,7 +11,7 @@ def check(label,got,want):
 with sync_playwright() as p:
     b=p.chromium.launch();ctx=b.new_context(viewport={'width':1024,'height':900},locale='en-US');pg=ctx.new_page()
     errs=[];pg.on('pageerror',lambda e:errs.append(str(e)[:200]))
-    pg.goto('file://'+ROOT+'index.html');pg.wait_for_timeout(1500)
+    pg.goto('file://'+ROOT+'index.html#forest');pg.wait_for_timeout(1500)
     def fr(g):return pg.locator('#f-'+g).element_handle().content_frame()
     def stored(g):return fr(g).evaluate(STORED[g])
     def inp(g):return fr(g).evaluate("document.getElementById('player-name').value")

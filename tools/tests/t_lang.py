@@ -4,7 +4,7 @@ import json
 with sync_playwright() as p:
     b=p.chromium.launch();ctx=b.new_context(viewport={'width':1024,'height':900},locale='en-US');pg=ctx.new_page()
     errs=[];pg.on('pageerror',lambda e:errs.append(str(e)[:200]));pg.on('console',lambda m:m.type=='error' and errs.append(m.text[:200]))
-    pg.goto('file://'+ROOT+'index.html');pg.wait_for_timeout(1500)
+    pg.goto('file://'+ROOT+'index.html#forest');pg.wait_for_timeout(1500)
     fr={k:pg.frame_locator('#f-'+k) for k in ['forest','moor','smoky']}
     print('init sel',[pg.evaluate("k=>document.getElementById('f-'+k).contentDocument.getElementById('language-select').value",k) for k in fr])
     fr['forest'].locator('#language-select').select_option('fr');pg.wait_for_timeout(800)
