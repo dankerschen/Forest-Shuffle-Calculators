@@ -4,7 +4,65 @@
 :root[data-theme=dark]{--bar:#1d261f;--ink:#e8eadb;--line:#3d4a3f;--soft:#2c3a2f;--accent:#b5d29c}
 *{box-sizing:border-box}html,body{height:100%;margin:0}body{display:flex;flex-direction:column;background:var(--bar);font:16px system-ui,-apple-system,Segoe UI,sans-serif}
 iframe{flex:1;width:100%;border:0;min-height:0}iframe[hidden]{display:none}
+/* splash: game chooser shown when the page opens without a game in the address */
+#splash{position:fixed;inset:0;z-index:10;overflow:auto;display:flex;flex-direction:column;align-items:center;padding:max(16px,env(safe-area-inset-top)) 16px 24px;background:var(--bar);color:var(--ink);transition:opacity .25s}
+#splash[hidden]{display:none}#splash.out{opacity:0;pointer-events:none}
+.sp-top{width:100%;max-width:1080px;display:flex;justify-content:flex-end}
+.sp-lang{display:flex;align-items:center;gap:4px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--soft)}
+.sp-lang svg{width:18px;height:18px;margin:0 4px 0 6px;color:var(--accent)}
+.sp-lang button{min-width:44px;min-height:36px;padding:4px 8px;font:600 13px/1 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:transparent;border:0;border-radius:7px;cursor:pointer}
+.sp-lang button[aria-pressed=true]{background:var(--accent);color:var(--bar)}
+.sp-head{max-width:1080px;width:100%;margin:auto 0 clamp(16px,4vh,36px);padding-top:clamp(12px,4vh,40px);text-align:center}
+.sp-eyebrow{margin:0 0 8px;font:600 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.sp-head h1{margin:0;font:500 clamp(28px,5vw,44px)/1.1 Georgia,Palatino,serif}
+.sp-head p{margin:10px 0 0;font:400 17px/1.4 Georgia,Palatino,serif;opacity:.8}
+.sp-games{width:100%;max-width:1080px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+@media(max-width:760px){.sp-games{grid-template-columns:1fr;max-width:520px}}
+.sp-game{display:flex;flex-direction:column;width:100%;height:100%;margin:0;padding:0;overflow:hidden;text-align:left;color:var(--ink);background:var(--bar);border:1px solid var(--line);border-radius:14px;cursor:pointer;box-shadow:0 8px 24px #454e3214;transition:transform .15s,box-shadow .15s,border-color .15s}
+.sp-game:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 12px 28px #454e3224}
+.sp-game:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.sp-game img{display:block;width:100%;height:auto;aspect-ratio:600/238;object-fit:cover;background:var(--soft)}
+.sp-label{display:flex;flex-direction:column;gap:4px;padding:14px 16px 16px;flex:1}
+.sp-name{font:500 21px/1.2 Georgia,Palatino,serif}
+.sp-sub:empty{display:none}.sp-sub{font:400 13px/1.35 system-ui,-apple-system,Segoe UI,sans-serif;opacity:.75}
+.sp-last{align-self:flex-start;margin-top:auto;padding:3px 8px;font:600 11px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;letter-spacing:.06em;text-transform:uppercase;border-radius:99px;color:var(--bar);background:var(--accent)}
+.sp-game:not(.last) .sp-last{visibility:hidden}
+.sp-game.last{border-color:var(--accent)}
+.sp-foot{max-width:1080px;margin:auto 0 0;padding-top:24px;font:400 12px/1.4 system-ui,-apple-system,Segoe UI,sans-serif;text-align:center;opacity:.65}
+@media(prefers-reduced-motion:reduce){#splash,.sp-game{transition:none}.sp-game:hover{transform:none}}
 </style></head><body>
+<main id="splash" aria-labelledby="sp-title" hidden>
+<div class="sp-top"><div class="sp-lang" role="group" aria-label="Language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-l="en" lang="en">EN</button><button type="button" data-l="fr" lang="fr">FR</button><button type="button" data-l="de" lang="de">DE</button></div></div>
+<div class="sp-head"><p class="sp-eyebrow" data-t="eyebrow"></p><h1 id="sp-title" data-t="title"></h1><p data-t="prompt"></p></div>
+<ul class="sp-games">
+<li><button type="button" class="sp-game" data-g="forest"><img src="__SPLASH_forest__" alt="" width="600" height="238"><span class="sp-label"><span class="sp-name" data-t="forest"></span><span class="sp-sub" data-t="forest_sub"></span><span class="sp-last" data-t="last"></span></span></button></li>
+<li><button type="button" class="sp-game" data-g="moor"><img src="__SPLASH_moor__" alt="" width="600" height="238"><span class="sp-label"><span class="sp-name" data-t="moor"></span><span class="sp-sub" data-t="moor_sub"></span><span class="sp-last" data-t="last"></span></span></button></li>
+<li><button type="button" class="sp-game" data-g="smoky"><img src="__SPLASH_smoky__" alt="" width="600" height="238"><span class="sp-label"><span class="sp-name" data-t="smoky"></span><span class="sp-sub" data-t="smoky_sub"></span><span class="sp-last" data-t="last"></span></span></button></li>
+</ul>
+<p class="sp-foot" data-t="foot"></p>
+</main>
+<script>
+// Splash: decided before the main script rewrites the address. A game in the address (#forest, #moor, #smoky) skips it.
+const SPLASH_ON=!['forest','moor','smoky'].includes(location.hash.slice(1));
+const SP_T={
+ en:{eyebrow:'Unofficial scoring aid',title:'Forest Shuffle scoring',prompt:'Choose your game',forest:'Forest Shuffle',forest_sub:'Base game · Alpine · Woodland Edge · Exploration · Promos',moor:'Dartmoor',moor_sub:'with Exmoor',smoky:'Smoky Mountains',smoky_sub:'',last:'Last played',foot:'Scores stay in this browser. Not affiliated with Lookout Games.',lang:'Language'},
+ fr:{eyebrow:'Aide au score non officielle',title:'Calcul des scores Forêt Mixte',prompt:'Choisissez votre jeu',forest:'Forêt Mixte',forest_sub:'Jeu de base · Alpin · Lisière · Exploration · Promos',moor:'Dartmoor',moor_sub:'avec Exmoor',smoky:'Smoky Mountains',smoky_sub:'',last:'Dernière partie',foot:'Les scores restent dans ce navigateur. Sans lien avec Lookout Games.',lang:'Langue'},
+ de:{eyebrow:'Inoffizielle Wertungshilfe',title:'Mischwald-Punkterechner',prompt:'Wähle dein Spiel',forest:'Mischwald',forest_sub:'Grundspiel · Alpin · Waldrand · Exploration · Promos',moor:'Dartmoor',moor_sub:'mit Exmoor',smoky:'Smoky Mountains',smoky_sub:'',last:'Zuletzt gespielt',foot:'Die Ergebnisse bleiben in diesem Browser. Keine Verbindung zu Lookout Games.',lang:'Sprache'}};
+function spRender(){const sp=document.getElementById('splash'),t=SP_T[lang]||SP_T.en;
+ sp.querySelectorAll('[data-t]').forEach(e=>{e.textContent=t[e.dataset.t]});
+ sp.querySelector('.sp-lang').setAttribute('aria-label',t.lang);
+ sp.querySelectorAll('.sp-lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===lang)))}
+function spClose(g){const sp=document.getElementById('splash');show(g);sp.classList.add('out');
+ const done=()=>{sp.hidden=true;sp.classList.remove('out');try{document.getElementById('f-'+g).focus()}catch(e){}};
+ matchMedia('(prefers-reduced-motion: reduce)').matches?done():setTimeout(done,260)}
+addEventListener('DOMContentLoaded',function(){if(!SPLASH_ON)return;const sp=document.getElementById('splash');
+ let last=null;try{last=localStorage.getItem('fs-last-game')}catch(e){}
+ sp.querySelectorAll('.sp-game').forEach(b=>{b.classList.toggle('last',b.dataset.g===last);b.addEventListener('click',()=>spClose(b.dataset.g))});
+ sp.querySelectorAll('.sp-lang button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.l!==lang)setLang(b.dataset.l);spRender()}));
+ addEventListener('message',function(e){if(e.data&&e.data.fsLang&&!sp.hidden)setTimeout(spRender,0)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sp.hidden)spClose(last&&G.includes(last)?last:'forest')});
+ spRender();sp.hidden=false});
+</script>
 <iframe id="f-forest" title="Forest Shuffle base game" hidden></iframe><iframe id="f-moor" title="Forest Shuffle Dartmoor" hidden></iframe><iframe id="f-smoky" title="Forest Shuffle Smoky Mountains" hidden></iframe>
 <script>
 const KEY='fs-last-game',root=document.documentElement,G=['forest','moor','smoky'];

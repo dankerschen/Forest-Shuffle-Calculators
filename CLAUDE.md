@@ -22,7 +22,7 @@ index.html                 BUILT OUTPUT. Never edit by hand; rebuild instead.
 README.md LICENSE THIRD-PARTY-NOTICES.md .nojekyll   (.nojekyll = serve files as they are, no Jekyll)
 tools/
   build.py                 entry point: `python3 tools/build.py` rewrites ../index.html
-  shell_template.html      outer page: game switcher state, theme/lang sync, 3 empty iframes
+  shell_template.html      outer page: splash game chooser, game switcher state, theme/lang sync, 3 empty iframes
   base_forest.html  base_moor.html  base_smoky.html   the three upstream-derived calculators (inputs)
   b4_common.py             shared CSS (CSS, LAYOUT_CSS, TOOLS_CSS) and shared JS (scroll-spy, click handler, home link)
   b4_forest.py b4_moor.py b4_smoky.py   per-game patches: hero, groups, nav, save notes, etc.
@@ -31,7 +31,7 @@ tools/
   i18n_build.py            merges the dictionaries and embeds i18n_engine.js per game
   i18n_engine.js           runtime translator (DOM text, attributes, regex rules, dialogs)
   i18n_ui.py  i18n_names.py  i18n_rules.py  moor_i18n.json   EN -> (FR, DE) data
-  art/                     hero_*.jpg, strip_*.jpg, motif_*_*.webp (AI-generated, embedded as base64)
+  art/                     hero_*.jpg, strip_*.jpg, motif_*_*.webp, splash_*.webp (AI-generated, embedded as base64)
   tests/                   Playwright scripts (see below); output goes to tools/.work/ (git-ignored)
 ```
 
@@ -49,6 +49,7 @@ python3 tools/tests/t_names.py    # default player names follow the language (ta
 python3 tools/tests/t_smoky9.py   # the nine late Smoky cards against the German appendix examples
 python3 tools/tests/t_promos.py   # Forest promo cards: scoring, box toggle, German names
 python3 tools/tests/t_moor_dp04.py  # Dartmoor DP04 Lambs / Willow Ptarmigan
+python3 tools/tests/t_splash.py   # splash game chooser: shown, language, last played, deep links, phone + desktop
 python3 tools/tests/i18n_check.py forest|moor|smoky   # lists strings left untranslated in FR/DE
 ```
 Run `shots.py` first: the other tests open the extracted `tools/.work/<game>.html` files.
@@ -59,6 +60,12 @@ The rebuild from a clean checkout was verified byte-identical to the last delive
 
 - `index.html` is a shell with three `<iframe id="f-forest|f-moor|f-smoky" srcdoc="..." hidden>`.
   The shell shows one at a time and uses the hash `#forest`, `#moor` or `#smoky`.
+- Splash (`#splash` in `shell_template.html`): a game chooser shown when the page opens without `#forest`, `#moor` or
+  `#smoky` in the address. It has EN/FR/DE buttons (its own small text table `SP_T`, the shell has no i18n engine),
+  marks the last played game, and Escape opens that game. Its script sits before the main shell script on purpose: it
+  must read the address before `show()` rewrites the hash, and `NEWTHEME` in `build.py` replaces everything from
+  `const dark=` to the end. Tiles use `art/splash_*.webp` (600 px copies of the hero art), embedded by `build.py`.
+  `t_lang.py` and `t_names.py` open `index.html#forest` to skip it.
 - Shell and frames talk by `postMessage`: `fsGame` (switch game), `fsTheme` (light/dark), `fsLang`
   (en/fr/de). Shell keeps `fs-last-game`, `fs-theme`, `fs-lang` in localStorage. srcdoc frames share
   the parent origin, so frames read the same localStorage.
