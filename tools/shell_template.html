@@ -55,13 +55,16 @@ function spRender(){const sp=document.getElementById('splash'),t=SP_T[lang]||SP_
 function spClose(g){const sp=document.getElementById('splash');show(g);sp.classList.add('out');
  const done=()=>{sp.hidden=true;sp.classList.remove('out');try{document.getElementById('f-'+g).focus()}catch(e){}};
  matchMedia('(prefers-reduced-motion: reduce)').matches?done():setTimeout(done,260)}
-addEventListener('DOMContentLoaded',function(){if(!SPLASH_ON)return;const sp=document.getElementById('splash');
- let last=null;try{last=localStorage.getItem('fs-last-game')}catch(e){}
- sp.querySelectorAll('.sp-game').forEach(b=>{b.classList.toggle('last',b.dataset.g===last);b.addEventListener('click',()=>spClose(b.dataset.g))});
+function spLast(){let l=null;try{l=localStorage.getItem('fs-last-game')}catch(e){}return G.includes(l)?l:'forest'}
+function spOpen(){const sp=document.getElementById('splash');sp.querySelectorAll('.sp-game').forEach(b=>b.classList.toggle('last',b.dataset.g===spLast()));
+ spRender();sp.classList.remove('out');sp.hidden=false;try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+addEventListener('DOMContentLoaded',function(){const sp=document.getElementById('splash');
+ sp.querySelectorAll('.sp-game').forEach(b=>b.addEventListener('click',()=>spClose(b.dataset.g)));
+ addEventListener('message',function(e){if(!e.data||!e.data.fsSplash)return;if(!G.some(k=>document.getElementById('f-'+k).contentWindow===e.source))return;spOpen()});
  sp.querySelectorAll('.sp-lang button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.l!==lang)setLang(b.dataset.l);spRender()}));
  addEventListener('message',function(e){if(e.data&&e.data.fsLang&&!sp.hidden)setTimeout(spRender,0)});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sp.hidden)spClose(last&&G.includes(last)?last:'forest')});
- spRender();sp.hidden=false});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sp.hidden)spClose(spLast())});
+ if(SPLASH_ON)spOpen()});
 </script>
 <iframe id="f-forest" title="Forest Shuffle base game" hidden></iframe><iframe id="f-moor" title="Forest Shuffle Dartmoor" hidden></iframe><iframe id="f-smoky" title="Forest Shuffle Smoky Mountains" hidden></iframe>
 <script>

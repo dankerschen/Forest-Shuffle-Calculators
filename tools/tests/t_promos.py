@@ -37,9 +37,9 @@ with sync_playwright() as p:
     vis=lambda:pg.locator('text=Big Bad Wolf').count()
     before=vis();pg.click('[data-visibility="Promos"]');pg.wait_for_timeout(300);after=vis()
     ok=before==0 and after>0;fails+=not ok;print('ok  ' if ok else 'FAIL','promo box toggle',before,after)
-    pg.select_option('#language-select','de');pg.wait_for_timeout(600)
+    pg.select_option('#language-select','de',force=True);pg.wait_for_timeout(600)
     de=[pg.locator('text='+s).count()>0 for s in ['Großer, böser Wolf','Rotkäppchen','Gedenklinde (Památná lípa)']]
     ok=all(de);fails+=not ok;print('ok  ' if ok else 'FAIL','German promo names',de)
-    pg.select_option('#language-select','en');pg.wait_for_timeout(300)
+    pg.select_option('#language-select','en',force=True);pg.wait_for_timeout(300)
     print('errors',errs);b.close()
 print('ALL OK' if not fails and not errs else 'FAILED')

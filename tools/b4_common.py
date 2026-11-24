@@ -206,7 +206,7 @@ html .category-nav a.nav-top{box-sizing:border-box;position:sticky;left:0;z-inde
 html .category-nav a.nav-top svg{width:22px;height:22px;display:block}
 html .category-nav a.nav-top:hover{background:var(--accent-soft);border-color:#a3ad87}
 @media(max-width:620px){html .category-nav a.nav-top{width:40px;min-width:40px}}
-html{--ic-lang:'''+_IC("%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18'/%3E")+''';--ic-rules:'''+_IC("%3Cpath d='M3 5.5c3-1.2 6-1.2 9 .8 3-2 6-2 9-.8V19c-3-1.2-6-1.2-9 .8-3-2-6-2-9-.8Z'/%3E%3Cpath d='M12 6.3v13.5'/%3E")+''';--ic-dark:'''+_IC("%3Cpath d='M20 14.6A8.2 8.2 0 0 1 9.4 4a8.6 8.6 0 1 0 10.6 10.6Z'/%3E")+'''}
+html{--ic-lang:'''+_IC("%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18'/%3E")+''';--ic-rules:'''+_IC("%3Cpath d='M3 5.5c3-1.2 6-1.2 9 .8 3-2 6-2 9-.8V19c-3-1.2-6-1.2-9 .8-3-2-6-2-9-.8Z'/%3E%3Cpath d='M12 6.3v13.5'/%3E")+''';--ic-games:'''+_IC("%3Crect x='4' y='4' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='13.5' y='4' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='4' y='13.5' width='6.5' height='6.5' rx='1.5'/%3E%3Crect x='13.5' y='13.5' width='6.5' height='6.5' rx='1.5'/%3E")+''';--ic-dark:'''+_IC("%3Cpath d='M20 14.6A8.2 8.2 0 0 1 9.4 4a8.6 8.6 0 1 0 10.6 10.6Z'/%3E")+'''}
 html .hero-top{position:relative;z-index:3;flex:0 0 100%;display:flex;align-items:stretch;gap:10px;margin:0 0 6px}
 html .hero-top .game-switch{flex:1 1 0;min-width:0;margin:0}
 html .hero-top .game-switch button{min-height:54px}
@@ -216,6 +216,7 @@ html .hero .hero-tools .tool::before,html .hero .hero-tools button.tool[aria-pre
 html .hero .hero-tools .tool-lang{--ic:var(--ic-lang)}
 html .hero .hero-tools .tool-rules{--ic:var(--ic-rules)}
 html .hero .hero-tools .tool-theme{--ic:var(--ic-dark)}
+html .hero .hero-tools .tool-games{--ic:var(--ic-games)}
 html .hero .hero-tools .tool-note{font:inherit;color:inherit;text-transform:none}
 html .hero .hero-tools .tool-lang select{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:pointer;font-size:16px;-webkit-appearance:none;appearance:none}
 html .hero .hero-tools button.tool[aria-pressed=true]{background:var(--accent)!important;border-color:var(--accent)!important;color:var(--surface)!important}
@@ -233,4 +234,7 @@ html .stool[aria-pressed=true]::before{background:var(--surface)}
 html .stool:hover{border-color:var(--accent)}html .stool:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 @media(max-width:480px){html .stool{width:40px;height:40px;min-height:40px}html .sticky-tools{gap:4px}}
 @media(max-width:560px){html .hero-top{flex-wrap:wrap}html .hero-top .game-switch{flex:0 0 100%}html .hero-tools{flex:0 0 100%;justify-content:flex-end}}
+/* game switcher replaced by a Games button back to the splash; language is chosen on the splash (select kept, hidden) */
+html .hero-top{flex-wrap:nowrap!important}html .hero-top .hero-tools{flex:none!important}html .hero-top .hero-back{margin-right:auto!important}
+html .hero .hero-tools .tool-lang{display:none!important}
 '''
