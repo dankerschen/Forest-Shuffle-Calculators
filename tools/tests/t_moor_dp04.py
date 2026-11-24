@@ -13,6 +13,6 @@ with sync_playwright() as p:
     check('sheep counts lambs as hooves',g('score-hoof-dartmoorsheep'),'6')
     pg.reload();pg.wait_for_timeout(1000);check('kept after reload',g('hoof-lambs'),'2')
     for l,names in [('de',['Lämmer (DP04)','Moorschneehuhn (DP04)']),('fr',['Agneaux (DP04)','Lagopède des saules (DP04)'])]:
-        pg.select_option('#language-select',l);pg.wait_for_timeout(800);check(l+' names',[pg.locator('text='+s).count() for s in names],[1,1])
-    pg.select_option('#language-select','en');pg.wait_for_timeout(300);b.close()
+        pg.select_option('#language-select',l,force=True);pg.wait_for_timeout(800);check(l+' names',[pg.locator('text='+s).count() for s in names],[1,1])
+    pg.select_option('#language-select','en',force=True);pg.wait_for_timeout(300);b.close()
 print('errors',errs);print('ALL OK' if not fails and not errs else 'FAILED')

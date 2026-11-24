@@ -51,7 +51,7 @@ with sync_playwright() as p:
     # ---------- Dartmoor: language
     pg3=b.new_page(viewport={'width':1024,'height':800});e3=[];pg3.on('pageerror',lambda e:e3.append(str(e)))
     pg3.goto(URL+'moor.html');pg3.wait_for_timeout(400)
-    pg3.select_option('#language-select','fr');pg3.wait_for_timeout(300)
+    pg3.select_option('#language-select','fr',force=True);pg3.wait_for_timeout(300)
     print('moor FR nav:',pg3.locator('.category-nav a').all_inner_texts()[-2:],'errs',e3)
-    pg3.select_option('#language-select','de');pg3.wait_for_timeout(300);print('moor DE nav:',pg3.locator('.category-nav a').all_inner_texts()[-2:])
+    pg3.select_option('#language-select','de',force=True);pg3.wait_for_timeout(300);print('moor DE nav:',pg3.locator('.category-nav a').all_inner_texts()[-2:])
     b.close()

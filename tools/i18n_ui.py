@@ -13,6 +13,8 @@ def add(en, fr, de):
 
 # --- hero ---------------------------------------------------------------------------
 add('Forest', 'Forêt', 'Wald')
+add('Games', 'Jeux', 'Spiele')
+add('All games', 'Tous les jeux', 'Alle Spiele')
 add('Dartmoor', 'Dartmoor', 'Dartmoor')
 add('Smoky', 'Smoky', 'Smoky')
 add('Mountains', 'Mountains', 'Mountains')

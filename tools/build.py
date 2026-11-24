@@ -56,8 +56,9 @@ def addswitch(t,g):
         return b.replace('<button','<button class="'+c+'"',1)
     tools=('<div class="hero-tools" role="group" aria-label="Page settings"><span class="tool tool-lang">'+lab+sel+'<span class="tool-note" id="lang-note">EN</span></span>'
            +addcls(btns[0],'tool tool-rules')+addcls(btns[1],'tool tool-theme')+'</div>')
-    t=t.replace('<header class="hero">','<header class="hero"><div class="hero-top">'+switch(g)+tools+'</div>',1)
-    js="<script>document.querySelectorAll('.game-switch button').forEach(function(b){b.addEventListener('click',function(){if(b.getAttribute('aria-current')==='page')return;try{parent.postMessage({fsGame:b.dataset.g},'*')}catch(e){}})})</script>"
+    back='<div class="hero-tools hero-back"><button type="button" class="tool tool-games" aria-label="All games" title="All games">Games</button></div>'
+    t=t.replace('<header class="hero">','<header class="hero"><div class="hero-top">'+back+tools+'</div>',1)
+    js="<script>document.querySelector('.tool-games').addEventListener('click',function(){try{parent.postMessage({fsSplash:1},'*')}catch(e){}})</script>"
     js+=THEMEJS
     js+="""<script>(function(){var pb=document.querySelector('.player-bar');if(!pb)return;var src={rules:document.querySelector('.hero-tools .tool-rules'),dark:document.querySelector('.hero-tools .tool-theme')};
 var w=document.createElement('div');w.className='sticky-tools';

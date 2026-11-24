@@ -62,15 +62,18 @@ The rebuild from a clean checkout was verified byte-identical to the last delive
   The shell shows one at a time and uses the hash `#forest`, `#moor` or `#smoky`.
 - Splash (`#splash` in `shell_template.html`): a game chooser shown when the page opens without `#forest`, `#moor` or
   `#smoky` in the address. It has EN/FR/DE buttons (its own small text table `SP_T`, the shell has no i18n engine),
-  marks the last played game, and Escape opens that game. Its script sits before the main shell script on purpose: it
+  marks the last played game, and Escape opens that game. The Games button in each game reopens it (`spOpen`). Its script sits before the main shell script on purpose: it
   must read the address before `show()` rewrites the hash, and `NEWTHEME` in `build.py` replaces everything from
   `const dark=` to the end. Tiles use `art/splash_*.webp` (600 px copies of the hero art), embedded by `build.py`.
   `t_lang.py` and `t_names.py` open `index.html#forest` to skip it.
 - Shell and frames talk by `postMessage`: `fsGame` (switch game), `fsTheme` (light/dark), `fsLang`
   (en/fr/de). Shell keeps `fs-last-game`, `fs-theme`, `fs-lang` in localStorage. srcdoc frames share
   the parent origin, so frames read the same localStorage.
-- Each game has `<header class="hero">` with `.hero-top` = `nav.game-switch` + `.hero-tools`
-  (language select, rules button, dark-mode button as icons with tiny captions). The `.sticky-controls`
+- Each game has `<header class="hero">` with `.hero-top` = a "Games" button (`.hero-back .tool-games`, posts
+  `fsSplash` to the shell, which reopens the splash) + `.hero-tools` (rules and dark-mode buttons as icons with tiny
+  captions). The game switcher was removed (Dan, Nov 2026); the language is chosen on the splash. The language
+  select stays in each game, hidden (`.tool-lang{display:none}`), because the i18n engine and Dartmoor read it; tests
+  set it with `select_option(..., force=True)`. The `.sticky-controls`
   block holds `.player-bar` (player tabs, plus `.sticky-tools` that proxy the hero's rules and dark
   buttons) and `.category-nav` (section links, with a house icon `.nav-top` first that scrolls to the top).
 - Shared JS in `b4_common.py` does scroll-spy, sets `--sticky-height`, and intercepts in-page `#` links with

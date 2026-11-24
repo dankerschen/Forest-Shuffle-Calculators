@@ -17,7 +17,7 @@ with sync_playwright() as p:
     def inp(g):return fr(g).evaluate("document.getElementById('player-name').value")
     def setlang(g,l):
         pg.evaluate("g=>location.hash='#'+g",g);pg.wait_for_timeout(300)
-        fr(g).select_option('#language-select',l);pg.wait_for_timeout(700)
+        fr(g).select_option('#language-select',l,force=True);pg.wait_for_timeout(700)
     for g in ['forest','moor','smoky']:
         pg.evaluate("g=>location.hash='#'+g",g);pg.wait_for_timeout(400)
         f=fr(g)
